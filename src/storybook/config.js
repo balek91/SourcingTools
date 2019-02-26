@@ -18,7 +18,7 @@ const MemoryDecorator = story => (
 
 addDecorator(MemoryDecorator)
 addDecorator(ThemeDecorator)
-addDecorator(centered)
+addDecorator(centered);
 
 function loadStories() {
   require('../components/counter/story.js')
