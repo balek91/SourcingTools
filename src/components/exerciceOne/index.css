@@ -1,0 +1,32 @@
+.counterContainer {
+  align-items: center;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  min-width: 120px;
+}
+
+.counterNumberContainer {
+  margin: 10px;
+}
+
+.buttonContainer {
+  display: flex;
+}
+
+.styledButton {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  font-size: 20px;
+}
+
+.commonText {
+  font-family: Gotham;
+  font-weight: normal;
+  color: white;
+  text-transform: uppercase;
+}

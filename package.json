@@ -1,0 +1,53 @@
+{
+  "name": "waynes",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-core": "^6.26.3",
+    "connected-react-router": "^4.3.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "enzyme-to-json": "^3.3.5",
+    "jest-styled-components": "^6.3.1",
+    "react": "^16.4.1",
+    "react-beautiful-dnd": "^10.0.3",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "react-vis": "^1.10.0",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^3.3.2"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 9001 -c src/storybook",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@storybook/addon-centered": "^3.4.8",
+    "@storybook/react": "^3.4.8",
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-idx": "^2.4.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.9.1",
+    "prettier": "^1.13.5",
+    "prettier-eslint-cli": "^4.7.1",
+    "react-test-renderer": "^16.8.1",
+    "redux-logger": "^3.0.6"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "app/**/*js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  }
+}

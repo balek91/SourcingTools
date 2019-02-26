@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match the snapshot (bad practice) 1`] = `
+<div
+  className="counterContainer"
+>
+  <div>
+    <span
+      className="commonText"
+    >
+      test
+    </span>
+  </div>
+  <div
+    className="counterNumberContainer"
+  >
+    <span
+      className="commonText"
+    >
+      0
+    </span>
+  </div>
+  <div>
+    <button
+      className="styledButton"
+      onClick={undefined}
+    >
+      <span
+        className="commonText"
+      >
+        -
+      </span>
+    </button>
+    <button
+      className="styledButton"
+      onClick={undefined}
+    >
+      <span
+        className="commonText"
+      >
+        +
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should match the snapshot (good Practice) 1`] = `
+<div
+  className="counterContainer"
+>
+  <div>
+    <span
+      className="commonText"
+    >
+      test
+    </span>
+  </div>
+  <div
+    className="counterNumberContainer"
+  >
+    <span
+      className="commonText"
+    >
+      0
+    </span>
+  </div>
+  <div>
+    <button
+      className="styledButton"
+    >
+      <span
+        className="commonText"
+      >
+        -
+      </span>
+    </button>
+    <button
+      className="styledButton"
+    >
+      <span
+        className="commonText"
+      >
+        +
+      </span>
+    </button>
+  </div>
+</div>
+`;
