@@ -11,13 +11,13 @@ const Container = styled.div`
 
 export default class Layout extends React.Component {
   static propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
   }
 
   render() {
     return (
       <Container>
-        <Header />
+        <Header title='Sourcing Tools' />
         {this.props.children}
       </Container>
     )
