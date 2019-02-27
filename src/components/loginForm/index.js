@@ -4,7 +4,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { isEmail, isPassword } from '../../utils/regexs'
-import { SubTitle, Title, CommonText } from '../texts'
+import { Title, CommonText } from '../texts'
 import Input from '../input'
 
 const Form = styled.form`
@@ -12,11 +12,6 @@ const Form = styled.form`
   flex-direction: column;
   min-width: 350px;
   text-align: center;
-`
-
-const LoginSubtitle = styled(SubTitle)`
-  cursor: pointer;
-  padding: 5px;
 `
 const StyledSubmit = styled(Input)`
   background-color: ${props => props.theme.color.primaryColor};
