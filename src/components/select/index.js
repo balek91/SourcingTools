@@ -29,6 +29,6 @@ export default class App extends React.Component {
           options={data ? data : []}
         />
       </StyledDiv>
-    );
+    )
   }
 }
