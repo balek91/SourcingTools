@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import './index.css'
 
 const Title = styled.h2`
-  font-family: Gotham;
+  font-family: Arial Rounded MT Bold;
   font-weight: normal;
   font-size: 40px;
   color: ${props =>
     props.color
       ? props.theme.color[props.color]
-      : props.theme.color.primaryColor};
+      : props.theme.color.black};
   text-transform: ${props => (props.uppercase ? 'uppercase' : 'none')};
 `
 const SubTitle = styled.h4`
@@ -18,7 +18,7 @@ const SubTitle = styled.h4`
   color: ${props =>
     props.color
       ? props.theme.color[props.color]
-      : props.theme.color.primaryColor};
+      : props.theme.color.black};
   text-transform: ${props => (props.uppercase ? 'uppercase' : 'none')};
 `
 const CommonText = styled.span`
@@ -27,19 +27,19 @@ const CommonText = styled.span`
   color: ${props =>
     props.color
       ? props.theme.color[props.color]
-      : props.theme.color.primaryColor};
+      : props.theme.color.black};
   text-transform: ${props => (props.uppercase ? 'uppercase' : 'none')};
 `
 
 const TextMenu = styled.span`
   cursor: pointer;
-  font-family: Gotham;
-  font-size: 25px;
+  font-family: Arial Rounded MT Bold;
+  font-size: 30px;
   font-weight: normal;
   color: ${props =>
     props.color
       ? props.theme.color[props.color]
-      : props.theme.color.primaryColor};
+      : props.theme.color.black};
   margin: 5px;
   text-transform: ${props => (props.uppercase ? 'uppercase' : 'none')};
 `
