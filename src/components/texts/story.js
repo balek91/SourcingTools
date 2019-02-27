@@ -1,8 +1,10 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { CommonText, Title, SubTitle } from './index'
+import centered from '@storybook/addon-centered'
 
 storiesOf('Texts', module)
+  .addDecorator(centered)
   .add('Title', () => <Title>Ceci est un Titre</Title>)
   .add('Title uppercase', () => <Title uppercase>Ceci est un Titre</Title>)
   .add('SubTitle', () => <SubTitle>Ceci est un Sous Titre</SubTitle>)
