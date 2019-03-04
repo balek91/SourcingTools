@@ -8,18 +8,18 @@ import mapProps from 'recompose/mapProps'
 import Proptypes from 'prop-types'
 
 
-const enhanceWithOnClick = (onClick,id) => class ComputeThing extends React.Component<any, any> {
+const enhanceWithOnClick = (onClick, id) => class ComputeThing extends React.Component<any, any> {
 
   localClick = () => {
     const { id } = this.props.rowData
     console.log(id)
-      onClick(id)
+    onClick(id)
   }
 
-  render() { 
+  render() {
     return (
       <button type='button' onClick={this.localClick}>
-        Estimate
+        Delete
       </button>
     )
   }
@@ -68,8 +68,8 @@ const styleConfig = {
       textAlign: 'center'
     },
     Container: { width: '100%' },
-    Pagination : {textAlign : 'center'},
-    Row : {border : '1px solid black'}
+    Pagination: { textAlign: 'center' },
+    Row: { border: '1px solid black' }
   }
 }
 
@@ -80,18 +80,18 @@ const StyledDiv = styled.div`
   justify-content : center;
   align-items : center;`
 
-  const EnhanceWithRowData = connect((state, props) => ({
-    rowData: selectors.rowDataSelector(state, props)
-  }));
+const EnhanceWithRowData = connect((state, props) => ({
+  rowData: selectors.rowDataSelector(state, props)
+}));
 
 
 export default class App extends React.Component {
 
   static propTypes = {
-    data : Proptypes.any,
-    funct : Proptypes.func
+    data: Proptypes.any,
+    funct: Proptypes.func
   }
- 
+
 
   state = {
 
@@ -103,7 +103,8 @@ export default class App extends React.Component {
 
 
   render() {
-    const {funct, data} = this.props
+    const { funct, data } = this.props
+    console.log('ttt', data)
     return (
       <StyledDiv>
         <Griddle data={data}
@@ -113,10 +114,15 @@ export default class App extends React.Component {
           plugins={[plugins.LocalPlugin, plugins.LegacyStylePlugin]}>
           <RowDefinition  >
 
-            <ColumnDefinition id='port' title='Port' />
-            <ColumnDefinition id='country' title='Country' />
-            <ColumnDefinition id='currency' title='Currency' />
-            <ColumnDefinition id='estimate' title='Estimate' customComponent={EnhanceWithRowData(enhanceWithOnClick(funct))}/>
+            <ColumnDefinition id='name' title='Name' />
+            <ColumnDefinition id='value' title='Value' />
+            <ColumnDefinition id='tax' title='Tax' />
+            <ColumnDefinition id='fee' title='Fee' />
+            <ColumnDefinition id='unit' title='Unit' />
+            <ColumnDefinition id='unitCost' title='Unit Cost' />
+            <ColumnDefinition id='description' title='Description' />
+            <ColumnDefinition id='categorie' title='Categorie' />
+            <ColumnDefinition id='action' title='Action' customComponent={EnhanceWithRowData(enhanceWithOnClick(funct))} />
           </RowDefinition>
         </Griddle>
       </StyledDiv>
