@@ -66,7 +66,7 @@ class LoginForm extends React.Component {
     }
     // mettre axios ici
     console.log(this.state.email, this.state.password)
-    history.push('/home')
+    history.push('/userPage')
   }
 
   render() {
