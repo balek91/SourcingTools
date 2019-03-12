@@ -1,81 +1,40 @@
 import React, { Component } from 'react'
-import Select from '../components/select'
 import Layout from './layout'
-import { countryOptions, serviceOptions, estimate, unitCostValidate, unitCostAwaiting } from '../database'
-import { TextMenu } from '../components/texts'
+import { estimate, unitCostValidate, unitCostAwaiting } from '../database'
 import styled from 'styled-components'
-import DataTable from '../components/dataTableEstimate'
-import UnitCostManagment from '../components/unitCostManagment2'
+import EstimateDataTable from '../components/dataTableEstimate'
+import UnitCostManagment from '../components/unitCostManagment'
+import UnitCostEstimate from '../components/unitCostEstimate'
+import TitleComp from '../components/titleComponent'
+import Button from '../components/buttonCustom'
+import { withRouter } from 'react-router'
 
-
-
-const SearchDiv = styled.div`
+const StandardDiv = styled.div`
 display: flex;
 flex-direction : column;
 margin-top : 10px;
 `
-const EstimateDiv = styled.div`
-display: flex;
-flex-direction : column;
-margin-top : 10px;
-`
-const TextMenuCustom = styled(TextMenu)`
-padding-left : 20px; 
-`
-const SelectDiv = styled.div`
-margin-top : 10px;
-display: flex;
-flex-direction : row;
-`
-const SelectRight = styled.div`
-display: flex;
-flex : 1;
-justify-content : flex-start;
-margin-left : 15vh;
-`
-const SelectLeft = styled.div`
-display: flex;
-flex : 1;
-justify-content : flex-end;
-margin-right : 15vh;
-`
-
-const DivEstimateButton = styled.div`
-margin-top : 20px;
-display : flex;
-align-items : center;
-justify-content : center;`
-
-const EstimateButton = styled.button`
-font-size : 16;
-`
 
 
-export default class UserPage extends Component {
+class UserPage extends Component {
 
 
   state = {
-    selectedLocation: null,
-    selectService: null,
     dataEstimateTable: [],
     showUnitCost: false,
+    showUnitCostEstimate: false,
     dataUnitCostValidate: [],
     dataUnitCostAwaiting: [],
-    refreshRender: true
+    lastEstimateShow: true,
+    manageUCShow: true,
+    estimateUCShow: true
   }
 
-  handleChangeLocation = (selectedLocation) => {
-    this.setState({
-      selectedLocation: selectedLocation,
-      dataEstimateTable: estimate
-    })
-    console.log(selectedLocation.value)
-  }
-  handleChangeService = (selectService) => {
-    console.log(selectService.value)
-  }
 
   componentDidMount() {
+    this.setState({
+      dataEstimateTable: estimate
+    })
 
   }
 
@@ -83,7 +42,8 @@ export default class UserPage extends Component {
     this.setState({
       showUnitCost: true,
       dataUnitCostValidate: unitCostValidate,
-      dataUnitCostAwaiting: unitCostAwaiting
+      dataUnitCostAwaiting: unitCostAwaiting,
+      lastEstimateShow: false
     })
   }
   updateTable = (tableName, value) => {
@@ -115,50 +75,86 @@ export default class UserPage extends Component {
     }
     return value
   }
-  estimate = () => {
+  estimateUnitCost = () => {
     console.log('validate', this.state.dataUnitCostValidate)
-    console.log('awaiting', this.state.dataUnitCostAwaiting)
-    console.log('estimate')
     this.setState({
-      refreshRender: true
-
+      showUnitCostEstimate: true,
+      manageUCShow: false
     })
 
   }
 
+  changeEstimateComponentStatus = () => {
+
+    this.setState({
+      lastEstimateShow: !this.state.lastEstimateShow,
+      showUnitCost: false,
+      showUnitCostEstimate: false,
+      manageUCShow: true,
+      estimateUCShow: true
+    })
+  }
+
+  changeManageComponentStatus = () => {
+    this.setState({
+      manageUCShow: !this.state.manageUCShow,
+      showUnitCostEstimate: false,
+      estimateUCShow: true
+    })
+  }
+
+  changeEstimateUCComponentStatus = () => {
+    this.setState({
+      estimateUCShow: !this.state.estimateUCShow,
+    })
+  }
+
+  redirectToEstimation = () => {
+    const { history } = this.props
+    history.push('/estimationPage')
+  }
+
   render() {
-    const { selectedLocation, selectService, dataEstimateTable, showUnitCost, dataUnitCostValidate, dataUnitCostAwaiting } = this.state
+    const { dataEstimateTable, showUnitCost, dataUnitCostValidate, dataUnitCostAwaiting, lastEstimateShow, manageUCShow, showUnitCostEstimate, estimateUCShow } = this.state
     return (
       <Layout>
-        <SearchDiv>
-          <TextMenuCustom>Search Last Estimation</TextMenuCustom>
-          <SelectDiv>
-            <SelectLeft>
-              <Select data={countryOptions} placeholder={'Location'} value={selectedLocation} handleChange={this.handleChangeLocation} />
-            </SelectLeft>
-            <SelectRight>
-              <Select data={serviceOptions} placeholder={'Service'} value={selectService} handleChange={this.handleChangeService} />
-            </SelectRight>
-          </SelectDiv>
-        </SearchDiv>
-        <EstimateDiv>
-          <TextMenuCustom>Last Estimation</TextMenuCustom>
-          <DataTable data={dataEstimateTable} funct={this.onEstimate} />
-        </EstimateDiv>
+        <StandardDiv>
+          <TitleComp func={this.changeEstimateComponentStatus} bool={lastEstimateShow} text={'Last Estimation'} />
+          {lastEstimateShow ?
+            <EstimateDataTable data={dataEstimateTable} funct={this.onEstimate} />
+            : (null)}
+        </StandardDiv>
         {
           showUnitCost ? (
-            <div>
+            <StandardDiv>
+              <TitleComp func={this.changeManageComponentStatus} bool={manageUCShow} text={'Manage Unit Cost'} />
+              {manageUCShow ?
+                (<div>
+                  <UnitCostManagment dataUnitCostValidate={dataUnitCostValidate} dataUnitCostAwaiting={dataUnitCostAwaiting} moveRow={this.updateTable} />
+                  <Button func={this.estimateUnitCost} text={'Estimate Unit Cost'}></Button>
+                </div>) : (null)
 
-              <UnitCostManagment dataUnitCostValidate={dataUnitCostValidate} dataUnitCostAwaiting={dataUnitCostAwaiting} moveRow={this.updateTable} />
-              <DivEstimateButton>
-                <EstimateButton type='button' onClick={this.estimate}>
-                  Estimate
-                  </EstimateButton>
-              </DivEstimateButton>
-            </div>
+              }
+            </StandardDiv>
           ) : (null)
+        }
+        {showUnitCostEstimate ? (
+          <StandardDiv>
+            <TitleComp func={this.changeEstimateUCComponentStatus} bool={estimateUCShow} text={'Estimate Unit Cost'} />
+            {estimateUCShow ?
+              (<div>
+                <UnitCostEstimate dataUnitCostValidate={dataUnitCostValidate} dataUnitCostAwaiting={dataUnitCostAwaiting} moveRow={this.updateTable} />
+                <Button func={this.redirectToEstimation} text={'Validate Estimation'}></Button>
+              </div>) : (null)
+
+            }
+          </StandardDiv>
+        ) : (null)
         }
       </Layout>
     )
   }
 }
+
+const ConnectedUserPage = withRouter(UserPage)
+export default ConnectedUserPage
