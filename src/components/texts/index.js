@@ -32,7 +32,6 @@ const CommonText = styled.span`
 `
 
 const TextMenu = styled.span`
-  cursor: pointer;
   font-family: Arial Rounded MT Bold;
   font-size: 30px;
   font-weight: normal;
@@ -44,4 +43,16 @@ const TextMenu = styled.span`
   text-transform: ${props => (props.uppercase ? 'uppercase' : 'none')};
 `
 
-export { CommonText, TextMenu, Title, SubTitle }
+const TextSubMenu = styled.span`
+  font-family: Arial Rounded MT Bold;
+  font-size: 25px;
+  font-weight: normal;
+  color: ${props =>
+    props.color
+      ? props.theme.color[props.color]
+      : props.theme.color.black};
+  margin: 5px;
+  text-transform: ${props => (props.uppercase ? 'uppercase' : 'none')};
+`
+
+export { CommonText, TextMenu, Title, SubTitle, TextSubMenu }
