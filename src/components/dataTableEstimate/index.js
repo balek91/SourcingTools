@@ -116,6 +116,7 @@ export default class App extends React.Component {
             <ColumnDefinition id='port' title='Port' />
             <ColumnDefinition id='country' title='Country' />
             <ColumnDefinition id='currency' title='Currency' />
+            <ColumnDefinition id='service' title='Service' />
             <ColumnDefinition id='estimate' title='Estimate' customComponent={EnhanceWithRowData(enhanceWithOnClick(funct))} />
           </RowDefinition>
         </Griddle>
