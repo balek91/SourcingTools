@@ -8,6 +8,7 @@ import Ranking from '../containers/ranking'
 import Options from '../containers/options'
 import UserPage from '../containers/userPage'
 import AdminPage from '../containers/adminPage'
+import EstimationPage from '../containers/estimatePage'
 
 export default class Routes extends React.Component {
   render() {
@@ -21,6 +22,7 @@ export default class Routes extends React.Component {
           <Route path="/options" component={Options} />
           <Route path="/userPage" component={UserPage} />
           <Route path="/adminPage" component={AdminPage} />
+          <Route path="/estimationPage" component={EstimationPage} />
         </Switch>
       </Router>
     )
