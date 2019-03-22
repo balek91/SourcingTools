@@ -1,14 +1,29 @@
 export const countryOptions = [
-  { value: 'Inde', label: 'Inde' },
-  { value: 'France', label: 'France' },
-  { value: 'Angleterre', label: 'Angleterre' },
-  { value: 'Espagne', label: 'Espagne' },
-  { value: 'Italie', label: 'Italie' },
+  { id: 1, value: 'Inde', label: 'Inde' },
+  { id: 2, value: 'France', label: 'France' },
+  { id: 3, value: 'Angleterre', label: 'Angleterre' },
+  { id: 4, value: 'Espagne', label: 'Espagne' },
+  { id: 5, value: 'Italie', label: 'Italie' },
+]
+
+export const locationOptions = [
+  { id: 1, value: 'Lerwick', label: 'Lerwick - UK', country: 'UK' },
+  { id: 2, value: 'Aberdeen', label: 'Aberdeen - UK', country: 'UK' },
+  { id: 3, value: 'Nouakchott', label: 'Nouakchott - Mauritania', country: 'Mauritania' },
+  { id: 4, value: 'Luanda', label: 'Luanda - Angola', country: 'Angola' },
+  { id: 5, value: 'Fourchon', label: 'Fourchon - USA', country: 'USA' },
 ]
 
 export const serviceOptions = [
-  { value: 'PortCall', label: 'PortCall' },
-  { value: 'Helicopter', label: 'Helicopter' }
+  { id: 1, value: 'Port Call', label: 'Port Call' },
+  { id: 2, value: 'Helicopter', label: 'Helicopter' }
+]
+
+export const currencyOptions = [
+  { id: 1, value: 'Euro', label: 'Euro - EUR' },
+  { id: 2, value: 'US Dollar', label: 'US Dollar - USD' },
+  { id: 3, value: 'Algerian Dinar', label: 'Algerian Dinar - DZD' },
+  { id: 4, value: 'Pound Sterling', label: 'Pound Sterling - GBP' }
 ]
 
 export const estimate = [
