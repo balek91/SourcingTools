@@ -47,7 +47,7 @@ export default class App extends React.Component {
   checkInputs = () => {
     if (this.state.service === '') {
       this.setState({
-        errorMessage: 'Veuillez remplir tous les champs'
+        errorMessage: 'Veuillez remplir tous les champs '
       })
       alert('Veuillez remplir tous les champs')
       return false
