@@ -15,19 +15,33 @@ const UnitCostDiv = styled.div`
   margin-top : 10px;
   margin-bottom : 10px;`
 
-const InputValue = callback => ({ value }, ...rest) => (
+const InputValue = (callback, updateInput) => ({ value, rowData }, ...rest) => (
 
-  <input type='text' onBlur={callback} defaultValue={value} />
+  <input type='text' onBlur={callback(rowData.id, updateInput, 'value')} defaultValue={value} />
 )
 
-const InputTax = callback => ({ value }, ...rest) => (
-  <input type='text' onBlur={callback} defaultValue={value} />
+const InputTax = (callback, updateInput) => ({ value, rowData }, ...rest) => (
+
+  <input type='text' onBlur={callback(rowData.id, updateInput, 'tax')} defaultValue={value} />
 )
 
-const InputFee = callback => ({ value }, ...rest) => (
-  <input type='text' onBlur={callback} defaultValue={value} />
+const InputFee = (callback, updateInput) => ({ value, rowData }, ...rest) => (
+
+  <input type='text' onBlur={callback(rowData.id, updateInput, 'fee')} defaultValue={value} />
 )
 
+const enhancedWithRowData = connect((state, props) => {
+  return {
+    rowData: rowDataSelector(state, props)
+  }
+
+})
+const rowDataSelector = (state, { griddleKey }) => {
+  return state
+    .get('data')
+    .find(rowMap => rowMap.get('griddleKey') === griddleKey)
+    .toJSON();
+}
 
 const components = {
   Table: ({ TableHeading, TableBody, NoResults, style, visibleRows }) => (
@@ -80,20 +94,19 @@ const styleConfig = {
 export default class App extends React.Component {
 
   static propTypes = {
-    dataUnitCostValidate: Proptypes.any
+    dataUnitCostValidate: Proptypes.any,
+    updateInput: Proptypes.func
   }
 
   state = {
-
   }
-  onChangeValue = (e) => {
-    console.log(e.target.value)
-    console.log('ok')
+
+  onChangeValue = (id, updateInput, value) => e => {
+    updateInput(id, e.target.value, value)
   }
 
   render() {
-    const { dataUnitCostValidate } = this.props
-
+    const { dataUnitCostValidate, updateInput } = this.props
     return (
       <UnitCostDiv>
         <Griddle data={dataUnitCostValidate}
@@ -103,12 +116,11 @@ export default class App extends React.Component {
           plugins={[plugins.LocalPlugin, plugins.LegacyStylePlugin]}>
           <RowDefinition>
             <ColumnDefinition id='name' title='Name' />
-            <ColumnDefinition id='value' title='Value' customComponent={InputValue(this.onChangeValue)} />
-            <ColumnDefinition id='tax' title='Tax' customComponent={InputTax(this.onChangeValue)} />
-            <ColumnDefinition id='fee' title='Fee' customComponent={InputFee(this.onChangeValue)} />
+            <ColumnDefinition id='value' title='Value' customComponent={enhancedWithRowData(InputValue(this.onChangeValue, updateInput))} />
+            <ColumnDefinition id='tax' title='Tax' customComponent={enhancedWithRowData(InputTax(this.onChangeValue, updateInput))} />
+            <ColumnDefinition id='fee' title='Fee' customComponent={enhancedWithRowData(InputFee(this.onChangeValue, updateInput))} />
             <ColumnDefinition id='unit' title='Unit' />
             <ColumnDefinition id='unitCost' title='Unit Cost' />
-
           </RowDefinition>
         </Griddle>
       </UnitCostDiv>
