@@ -111,7 +111,35 @@ class UserPage extends Component {
 
   redirectToEstimation = () => {
     const { history } = this.props
+    console.log(this.state.dataUnitCostValidate)
     history.push('/estimationPage')
+  }
+
+  updateInput = (idRow, value, type) => {
+    console.log('okkk', idRow, value, type)
+    let { dataUnitCostValidate } = this.state
+    let i = 0
+    let find = false
+    let table = dataUnitCostValidate
+    while (i < table.length && !find) {
+      if (table[i].id === idRow) {
+        console.log('ok')
+        find = true
+        if (type === 'value') {
+          table[i].value = parseFloat(value)
+        }
+        else if (type === 'fee') {
+          table[i].fee = parseFloat(value)
+        }
+        else if (type === 'tax') {
+          table[i].tax = parseFloat(value)
+        }
+        this.setState({
+          dataUnitCostValidate: table
+        })
+      }
+      i++;
+    }
   }
 
   render() {
@@ -143,7 +171,7 @@ class UserPage extends Component {
             <TitleComp func={this.changeEstimateUCComponentStatus} bool={estimateUCShow} text={'Estimate Unit Cost'} />
             {estimateUCShow ?
               (<div>
-                <UnitCostEstimate dataUnitCostValidate={dataUnitCostValidate} dataUnitCostAwaiting={dataUnitCostAwaiting} moveRow={this.updateTable} />
+                <UnitCostEstimate dataUnitCostValidate={dataUnitCostValidate} updateInput={this.updateInput} />
                 <Button func={this.redirectToEstimation} text={'Validate Estimation'}></Button>
               </div>) : (null)
 
