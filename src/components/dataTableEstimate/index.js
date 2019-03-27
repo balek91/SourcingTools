@@ -113,7 +113,7 @@ export default class App extends React.Component {
           plugins={[plugins.LocalPlugin, plugins.LegacyStylePlugin]}>
           <RowDefinition  >
 
-            <ColumnDefinition id='port' title='Port' />
+            <ColumnDefinition id='location' title='Location' />
             <ColumnDefinition id='country' title='Country' />
             <ColumnDefinition id='currency' title='Currency' />
             <ColumnDefinition id='service' title='Service' />
