@@ -88,7 +88,7 @@ export default class App extends React.Component {
             <ColumnDefinition id='tax' title='Tax' />
             <ColumnDefinition id='fee' title='Fee' />
             <ColumnDefinition id='unit' title='Unit' />
-            <ColumnDefinition id='unitCost' title='Unit Cost' />
+            <ColumnDefinition id='quantity' title='Quantity' />
             <ColumnDefinition id='description' title='Description' />
             <ColumnDefinition id='categorie' title='Categorie' />
           </RowDefinition>

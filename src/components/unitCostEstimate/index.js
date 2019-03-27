@@ -120,7 +120,7 @@ export default class App extends React.Component {
             <ColumnDefinition id='tax' title='Tax' customComponent={enhancedWithRowData(InputTax(this.onChangeValue, updateInput))} />
             <ColumnDefinition id='fee' title='Fee' customComponent={enhancedWithRowData(InputFee(this.onChangeValue, updateInput))} />
             <ColumnDefinition id='unit' title='Unit' />
-            <ColumnDefinition id='unitCost' title='Unit Cost' />
+            <ColumnDefinition id='quantity' title='Quantity' />
           </RowDefinition>
         </Griddle>
       </UnitCostDiv>

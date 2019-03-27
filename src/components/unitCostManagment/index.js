@@ -104,7 +104,7 @@ export default class App extends React.Component {
               <ColumnDefinition id='categorie' title='Categorie' />
               <ColumnDefinition id='description' title='Description' />
               <ColumnDefinition id='unit' title='Unit' />
-              <ColumnDefinition id='unitCost' title='Unit Cost' />
+              <ColumnDefinition id='quantity' title='Quantity' />
               <ColumnDefinition
                 id='id'
                 title='Action'
@@ -127,7 +127,7 @@ export default class App extends React.Component {
               <ColumnDefinition id='categorie' title='Categorie' />
               <ColumnDefinition id='description' title='Description' />
               <ColumnDefinition id='unit' title='Unit' />
-              <ColumnDefinition id='unitCost' title='Unit Cost' />
+              <ColumnDefinition id='quantity' title='Quantity' />
               <ColumnDefinition
                 id='id'
                 title='Action'
