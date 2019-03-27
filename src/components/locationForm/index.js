@@ -1,7 +1,6 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import { CommonText } from '../texts'
 import Input from '../input'
 import Select from '../select'
 import { countryOptions, currencyOptions } from '../../database'
@@ -46,6 +45,12 @@ export default class App extends React.Component {
   clearErrorMessages = () => {
     this.setState({ errorMessage: '' })
   }
+
+  clearFields = () => {
+    this.setState({ country: '', port: '', currency: '' })
+  }
+
+
   checkInputs = () => {
     if (this.state.country === '' || this.state.port === '' || this.state.currency === '') {
       this.setState({
@@ -75,17 +80,18 @@ export default class App extends React.Component {
       return
     }
     console.log(this.state.country.id, this.state.port, this.state.currency.id)
+    this.clearFields()
   }
 
   render() {
-    const { country, currency } = this.state
+    const { country, currency, port } = this.state
     return (
       <Form onSubmit={this.handleSubmit}>
         <RowDiv>
           <Select data={countryOptions} placeholder={'Country'} value={country} handleChange={this.handleChangeCountry} />
         </RowDiv>
         <RowDiv>
-          <StyledInput onChange={this.inputHandler} placeholder='Port' name='port' />
+          <StyledInput onChange={this.inputHandler} placeholder='Port' name='port' value={port} />
         </RowDiv>
         <RowDiv>
           <Select data={currencyOptions} placeholder={'Currency'} value={currency} handleChange={this.handleChangeCurrency} />
