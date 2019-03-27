@@ -116,14 +116,12 @@ class UserPage extends Component {
   }
 
   updateInput = (idRow, value, type) => {
-    console.log('okkk', idRow, value, type)
     let { dataUnitCostValidate } = this.state
     let i = 0
     let find = false
     let table = dataUnitCostValidate
     while (i < table.length && !find) {
       if (table[i].id === idRow) {
-        console.log('ok')
         find = true
         if (type === 'value') {
           table[i].value = parseFloat(value)
